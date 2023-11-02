@@ -2,11 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { useState } from "react";
+import { Locale, useLocaleStore } from "@/lib/locale";
 
 export default function Home() {
   // TODO: use zustand with persistent storage?
-  const [locale, setLocale] = useState<"en" | "tr" | "de">("en");
+  const { locale, setLocale } = useLocaleStore();
   const { toast } = useToast();
 
   const copyToClipboard = () => {
@@ -57,21 +57,21 @@ export default function Home() {
       <div className="flex gap-3">
         <Button
           variant={locale === "en" ? "secondary" : "default"}
-          onClick={() => setLocale("en")}
+          onClick={() => setLocale(Locale.EN)}
         >
           EN 🌎{" "}
         </Button>
 
         <Button
           variant={locale === "tr" ? "secondary" : "default"}
-          onClick={() => setLocale("tr")}
+          onClick={() => setLocale(Locale.TR)}
         >
           TR 🇹🇷
         </Button>
 
         <Button
           variant={locale === "de" ? "secondary" : "default"}
-          onClick={() => setLocale("de")}
+          onClick={() => setLocale(Locale.DE)}
         >
           DE 🇩🇪{" "}
         </Button>
