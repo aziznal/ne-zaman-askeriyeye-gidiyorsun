@@ -1,11 +1,40 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
 
 export default function Home() {
   // TODO: use zustand with persistent storage?
   const [locale, setLocale] = useState<"en" | "tr" | "de">("en");
+  const { toast } = useToast();
+
+  const copyToClipboard = () => {
+    const el = document.createElement("textarea");
+    el.value = "ne-zaman-askeriyeye-gidiyorsun.aziznal.com";
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+
+    if (locale === "en")
+      toast({
+        title: "Site address copied to clipboard!",
+        variant: "success",
+      });
+
+    if (locale === "tr")
+      toast({
+        title: "Site adresi panoya kopyalandı!",
+        variant: "success",
+      });
+
+    if (locale === "de")
+      toast({
+        title: "Website-Adresse in die Zwischenablage kopiert!",
+        variant: "success",
+      });
+  };
 
   const daysUntil9thNovember2023 = Math.ceil(
     (new Date("2023-11-09T00:00:00.000Z").getTime() - Date.now()) /
@@ -59,7 +88,8 @@ export default function Home() {
           {locale === "en" &&
             `9th November 2023 (${daysUntil9thNovember2023} days)`}
           {locale === "tr" && `9. Kasım 2023 (${daysUntil9thNovember2023} gün)`}
-          {locale === "de" && `9. November 2023 (${daysUntil9thNovember2023} Tage)`}
+          {locale === "de" &&
+            `9. November 2023 (${daysUntil9thNovember2023} Tage)`}
         </h2>
       </div>
 
@@ -71,10 +101,22 @@ export default function Home() {
         </h1>
 
         <h2 className="text-5xl mt-12 rainbow-text">
-          {locale === "en" && `9th December 2023 (${daysUntil9thDecember2023} days)`}
-          {locale === "tr" && `9. Aralık 2023 (${daysUntil9thDecember2023} gün)`}
-          {locale === "de" && `9. Dezember 2023 (${daysUntil9thDecember2023} Tage)`}
+          {locale === "en" &&
+            `9th December 2023 (${daysUntil9thDecember2023} days)`}
+          {locale === "tr" &&
+            `9. Aralık 2023 (${daysUntil9thDecember2023} gün)`}
+          {locale === "de" &&
+            `9. Dezember 2023 (${daysUntil9thDecember2023} Tage)`}
         </h2>
+      </div>
+
+      <div
+        className="mt-24 font-bold cursor-pointer active:text-blue-700"
+        onClick={copyToClipboard}
+      >
+        {locale === "en" && <>Share the good news 🎉 </>}
+        {locale === "tr" && <>İyi haberi paylaş 🎉 </>}
+        {locale === "de" && <>Gute Nachrichten teilen 🎉 </>}
       </div>
     </main>
   );
