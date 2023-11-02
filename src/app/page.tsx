@@ -48,7 +48,7 @@ export default function Home() {
 
   return (
     <main
-      className="flex flex-col justify-center items-center h-[100vh] text-white"
+      className="flex flex-col justify-center items-center min-h-[100vh] text-white py-24"
       style={{
         background:
           "linear-gradient(45deg, rgba(66,0,0,1) 0%, rgba(18,0,38,1) 57%, rgba(89,0,157,1) 100%)",
