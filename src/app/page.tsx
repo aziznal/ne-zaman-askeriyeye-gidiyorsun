@@ -102,7 +102,7 @@ export default function Home() {
       </div>
 
       <div className="text-center font-bold mt-12">
-        <h1 className="text-7xl">
+        <h1 className="text-4xl lg:text-7xl">
           {locale === "en" && "When am I going to my Military Service?"}
           {locale === "tr" && "Askeriyeye ne zaman gidiyorum?"}
           {locale === "de" && "Wann gehe ich zum Militärdienst?"}
@@ -132,7 +132,7 @@ export default function Home() {
       </div>
 
       <div className="text-center font-bold mt-24">
-        <h1 className="text-7xl">
+        <h1 className="text-4xl lg:text-7xl">
           {locale === "en" && "When am I coming back?"}
           {locale === "tr" && "Ne zaman geri geliyorum?"}
           {locale === "de" && "Wann komme ich zurück?"}
