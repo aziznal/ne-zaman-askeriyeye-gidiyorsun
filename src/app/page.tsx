@@ -36,19 +36,43 @@ export default function Home() {
       });
   };
 
-  const daysUntil9thNovember2023 = Math.ceil(
+  const daysUntil9thNovember2023Raw = Math.ceil(
     (new Date("2023-11-09T00:00:00.000Z").getTime() - Date.now()) /
       (1000 * 60 * 60 * 24)
   );
 
-  const daysUntil9thDecember2023 = Math.ceil(
-    (new Date("2023-12-09T00:00:00.000Z").getTime() - Date.now()) /
+  const daysUntil9thNovember2023 =
+    daysUntil9thNovember2023Raw < 0 ? 0 : daysUntil9thNovember2023Raw;
+
+  const weekday9thNovember = new Date(
+    "2023-11-09T00:00:00.000Z"
+  ).toLocaleDateString(
+    locale === "en" ? "en-US" : locale === "tr" ? "tr-TR" : "de-DE",
+    {
+      weekday: "long",
+    }
+  );
+
+  const daysUntil11thDecember2023Raw = Math.ceil(
+    (new Date("2023-12-11T00:00:00.000Z").getTime() - Date.now()) /
       (1000 * 60 * 60 * 24)
+  );
+
+  const daysUntil11thDecember2023 =
+    daysUntil11thDecember2023Raw < 0 ? 0 : daysUntil11thDecember2023Raw;
+
+  const weekday11thDecember = new Date(
+    "2023-12-11T00:00:00.000Z"
+  ).toLocaleDateString(
+    locale === "en" ? "en-US" : locale === "tr" ? "tr-TR" : "de-DE",
+    {
+      weekday: "long",
+    }
   );
 
   return (
     <main
-      className="flex flex-col justify-center items-center min-h-[100vh] text-white py-24"
+      className="flex flex-col justify-center items-center min-h-[100vh] text-white py-24 px-12"
       style={{
         background:
           "linear-gradient(45deg, rgba(66,0,0,1) 0%, rgba(18,0,38,1) 57%, rgba(89,0,157,1) 100%)",
@@ -85,11 +109,25 @@ export default function Home() {
         </h1>
 
         <h2 className="text-5xl mt-12 rainbow-text">
-          {locale === "en" &&
-            `9th November 2023 (${daysUntil9thNovember2023} days)`}
-          {locale === "tr" && `9. Kasım 2023 (${daysUntil9thNovember2023} gün)`}
-          {locale === "de" &&
-            `9. November 2023 (${daysUntil9thNovember2023} Tage)`}
+          {locale === "en" && (
+            <>
+              {weekday9thNovember} - 9th November 2023 <br /> (
+              {daysUntil9thNovember2023} days)
+            </>
+          )}
+
+          {locale === "tr" && (
+            <>
+              {weekday9thNovember} - 9. Kasım 2023 <br />(
+              {daysUntil9thNovember2023} gün)
+            </>
+          )}
+          {locale === "de" && (
+            <>
+              {weekday9thNovember} - 9. November 2023 <br /> (
+              {daysUntil9thNovember2023} Tage){" "}
+            </>
+          )}
         </h2>
       </div>
 
@@ -101,17 +139,29 @@ export default function Home() {
         </h1>
 
         <h2 className="text-5xl mt-12 rainbow-text">
-          {locale === "en" &&
-            `9th December 2023 (${daysUntil9thDecember2023} days)`}
-          {locale === "tr" &&
-            `9. Aralık 2023 (${daysUntil9thDecember2023} gün)`}
-          {locale === "de" &&
-            `9. Dezember 2023 (${daysUntil9thDecember2023} Tage)`}
+          {locale === "en" && (
+            <>
+              {weekday11thDecember} - 11th December 2023 <br />(
+              {daysUntil11thDecember2023} days)
+            </>
+          )}
+          {locale === "tr" && (
+            <>
+              {weekday11thDecember} - 11. Aralık 2023 <br />(
+              {daysUntil11thDecember2023} gün)
+            </>
+          )}
+          {locale === "de" && (
+            <>
+              {weekday11thDecember} - 11. Dezember 2023 <br />(
+              {daysUntil11thDecember2023} Tage)
+            </>
+          )}
         </h2>
       </div>
 
       <div
-        className="mt-24 font-bold cursor-pointer active:text-blue-700"
+        className="mt-24 font-bold cursor-pointer active:text-blue-700 hover:text-blue-700 transition-all"
         onClick={copyToClipboard}
       >
         {locale === "en" && <>Share the good news 🎉 </>}
