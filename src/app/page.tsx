@@ -3,6 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { Locale, useLocaleStore } from "@/lib/locale";
+import { GithubIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   // TODO: use zustand with persistent storage?
@@ -168,6 +170,15 @@ export default function Home() {
         {locale === "tr" && <>İyi haberi paylaş 🎉 </>}
         {locale === "de" && <>Gute Nachrichten teilen 🎉 </>}
       </div>
+
+      <Link
+        className="mt-12 flex gap-2 items-center hover:text-blue-700 transition-all"
+        href="https://github.com/aziznal/ne-zaman-askeriyeye-gidiyorsun"
+        target="_blank"
+      >
+        <GithubIcon size={24} />
+        <span className="text-sm font-bold">@aziznal</span>
+      </Link>
     </main>
   );
 }
