@@ -21,17 +21,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/*<!-- Google tag (gtag.js) -->*/}
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-2MTL12V5KQ"
-        />
+          strategy="afterInteractive"
+        ></Script>
 
-        <Script id="google-analytics">
+        <Script id="google-analytics" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
 
-          gtag('config', 'G-2MTL12V5KQ');`}
+              gtag('config', 'G-2MTL12V5KQ');`}
         </Script>
       </head>
 
