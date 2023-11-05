@@ -2,6 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import {
+  trackGithubClicked,
+  trackLocaleChanged,
+  trackShareEvent,
+} from "@/lib/analytics/events";
 import { Locale, useLocaleStore } from "@/lib/locale";
 import { GithubIcon } from "lucide-react";
 import Link from "next/link";
@@ -11,7 +16,12 @@ export default function Home() {
   const { locale, setLocale } = useLocaleStore();
   const { toast } = useToast();
 
-  const copyToClipboard = () => {
+  const onShareClicked = () => {
+    copySitelinkToClipboard();
+    trackShareEvent();
+  };
+
+  const copySitelinkToClipboard = () => {
     const el = document.createElement("textarea");
     el.value = "ne-zaman-askeriyeye-gidiyorsun.aziznal.com";
     document.body.appendChild(el);
@@ -36,6 +46,15 @@ export default function Home() {
         title: "Website-Adresse in die Zwischenablage kopiert!",
         variant: "success",
       });
+  };
+
+  const onChangeLocaleClicked = (newLocale: Locale) => {
+    setLocale(newLocale);
+
+    trackLocaleChanged({
+      from: locale,
+      to: newLocale,
+    });
   };
 
   const daysUntil9thNovember2023Raw = Math.ceil(
@@ -83,21 +102,21 @@ export default function Home() {
       <div className="flex gap-3">
         <Button
           variant={locale === "en" ? "secondary" : "default"}
-          onClick={() => setLocale(Locale.EN)}
+          onClick={() => onChangeLocaleClicked(Locale.EN)}
         >
           EN 🌎{" "}
         </Button>
 
         <Button
           variant={locale === "tr" ? "secondary" : "default"}
-          onClick={() => setLocale(Locale.TR)}
+          onClick={() => onChangeLocaleClicked(Locale.TR)}
         >
           TR 🇹🇷
         </Button>
 
         <Button
           variant={locale === "de" ? "secondary" : "default"}
-          onClick={() => setLocale(Locale.DE)}
+          onClick={() => onChangeLocaleClicked(Locale.DE)}
         >
           DE 🇩🇪{" "}
         </Button>
@@ -164,7 +183,7 @@ export default function Home() {
 
       <div
         className="mt-24 font-bold cursor-pointer active:text-blue-700 hover:text-blue-700 transition-all"
-        onClick={copyToClipboard}
+        onClick={onShareClicked}
       >
         {locale === "en" && <>Share the good news 🎉 </>}
         {locale === "tr" && <>İyi haberi paylaş 🎉 </>}
@@ -175,6 +194,7 @@ export default function Home() {
         className="mt-12 flex gap-2 items-center hover:text-blue-700 transition-all"
         href="https://github.com/aziznal/ne-zaman-askeriyeye-gidiyorsun"
         target="_blank"
+        onClick={() => trackGithubClicked()}
       >
         <GithubIcon size={24} />
         <span className="text-sm font-bold">@aziznal</span>
