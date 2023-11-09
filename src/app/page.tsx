@@ -59,11 +59,8 @@ export default function Home() {
 
   const daysUntil9thNovember2023Raw = Math.ceil(
     (new Date("2023-11-09T00:00:00.000Z").getTime() - Date.now()) /
-      (1000 * 60 * 60 * 24)
+    (1000 * 60 * 60 * 24)
   );
-
-  const daysUntil9thNovember2023 =
-    daysUntil9thNovember2023Raw < 0 ? 0 : daysUntil9thNovember2023Raw;
 
   const weekday9thNovember = new Date(
     "2023-11-09T00:00:00.000Z"
@@ -76,7 +73,7 @@ export default function Home() {
 
   const daysUntil11thDecember2023Raw = Math.ceil(
     (new Date("2023-12-11T00:00:00.000Z").getTime() - Date.now()) /
-      (1000 * 60 * 60 * 24)
+    (1000 * 60 * 60 * 24)
   );
 
   const daysUntil11thDecember2023 =
@@ -132,21 +129,18 @@ export default function Home() {
         <h2 className="text-5xl mt-12 rainbow-text">
           {locale === "en" && (
             <>
-              {weekday9thNovember} - 9th November 2023 <br /> (
-              {daysUntil9thNovember2023} days)
+              {weekday9thNovember} - 9th November 2023 <br /> (I&apos;m there...)
             </>
           )}
 
           {locale === "tr" && (
             <>
-              {weekday9thNovember} - 9. Kasım 2023 <br />(
-              {daysUntil9thNovember2023} gün)
+              {weekday9thNovember} - 9. Kasım 2023 <br />(Ordayım...)
             </>
           )}
           {locale === "de" && (
             <>
-              {weekday9thNovember} - 9. November 2023 <br /> (
-              {daysUntil9thNovember2023} Tage){" "}
+              {weekday9thNovember} - 9. November 2023 <br /> (Ich bin da...){" "}
             </>
           )}
         </h2>
