@@ -12,7 +12,6 @@ import { GithubIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
-  // TODO: use zustand with persistent storage?
   const { locale, setLocale } = useLocaleStore();
   const { toast } = useToast();
 
@@ -57,11 +56,6 @@ export default function Home() {
     });
   };
 
-  const daysUntil9thNovember2023Raw = Math.ceil(
-    (new Date("2023-11-09T00:00:00.000Z").getTime() - Date.now()) /
-    (1000 * 60 * 60 * 24)
-  );
-
   const weekday9thNovember = new Date(
     "2023-11-09T00:00:00.000Z"
   ).toLocaleDateString(
@@ -73,7 +67,7 @@ export default function Home() {
 
   const daysUntil11thDecember2023Raw = Math.ceil(
     (new Date("2023-12-11T00:00:00.000Z").getTime() - Date.now()) /
-    (1000 * 60 * 60 * 24)
+      (1000 * 60 * 60 * 24)
   );
 
   const daysUntil11thDecember2023 =
@@ -129,18 +123,20 @@ export default function Home() {
         <h2 className="text-5xl mt-12 rainbow-text">
           {locale === "en" && (
             <>
-              {weekday9thNovember} - 9th November 2023 <br /> (I&apos;m there...)
+              {weekday9thNovember} - 9th November 2023 <br /> (I&apos;m
+              already there)
             </>
           )}
 
           {locale === "tr" && (
             <>
-              {weekday9thNovember} - 9. Kasım 2023 <br />(Ordayım...)
+              {weekday9thNovember} - 9. Kasım 2023 <br />
+              (Oradayım)
             </>
           )}
           {locale === "de" && (
             <>
-              {weekday9thNovember} - 9. November 2023 <br /> (Ich bin da...){" "}
+              {weekday9thNovember} - 9. November 2023 <br /> (Ich bin schon da){" "}
             </>
           )}
         </h2>
